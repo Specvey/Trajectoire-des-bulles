@@ -7,6 +7,6 @@ public class Test
 		//test2
 		//testcouille
 		//test
-		//modif xavier
 	}
 }
+
