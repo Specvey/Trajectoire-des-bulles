@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Backtracking
 {
 	ArrayList<Point> lesPoints = new ArrayList<Point>();
-	ArrayList<Double[]> trajectoires = new ArrayList<Double[]>();
 	
 	public Backtracking()
 	{
@@ -83,9 +82,11 @@ public class Backtracking
 	
 	public double calculAngle(Point p1, Point p2, Point p3)
 	{
-		double res = 0;
+		double b = calculDistance(p1, p2);
+		double a = calculDistance(p2, p3);
+		double c = calculDistance(p1, p3);
 		
-		
+		double res = Math.acos((Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2))/(-2*a*b));
 		
 		return res;
 	}
