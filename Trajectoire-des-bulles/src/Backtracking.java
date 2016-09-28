@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Backtracking
 {
 	ArrayList<Point> lesPoints = new ArrayList<Point>();
+	ArrayList<Double[]> trajectoires = new ArrayList<Double[]>();
 	
 	public Backtracking()
 	{
