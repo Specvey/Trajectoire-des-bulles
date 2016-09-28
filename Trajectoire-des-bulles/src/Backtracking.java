@@ -87,9 +87,11 @@ public class Backtracking
 
 	public double calculAngle(Point p1, Point p2, Point p3)
 	{
-		double res = 0;
+		double b = calculDistance(p1, p2);
+		double a = calculDistance(p2, p3);
+		double c = calculDistance(p1, p3);
 		
-		
+		double res = Math.acos((Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2))/(-2*a*b));
 		
 		return res;
 	}
@@ -100,4 +102,25 @@ public class Backtracking
 
 		return res;
 	}
+	
+	public ArrayList<Point> voisin(Point pO) 
+	{
+		 
+		  ArrayList<Point> voisinage = new ArrayList<Point>();
+		  
+		  
+		  for(Point pV : lesPoints)
+		  {
+			  if(!pO.compareTo(pV))
+			  {
+				  pV.setDistance(calculDistance(pO, pV));
+				  voisinage.add(pV);
+			  }
+		  }
+		  
+		  
+		  
+		  return voisinage;
+		  
+		 }
 }
