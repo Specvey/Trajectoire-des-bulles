@@ -104,13 +104,12 @@ public class Backtracking
 		  ArrayList<Point> voisinage = new ArrayList<Point>();
 		  
 		  
-		  for(Point pV : lesPoints){
-			  if(!pO.compareTo(pV)){
-				  
+		  for(Point pV : lesPoints)
+		  {
+			  if(!pO.compareTo(pV))
+			  {
 				  pV.setDistance(calculDistance(pO, pV));
 				  voisinage.add(pV);
-				  
-				
 			  }
 		  }
 		  
