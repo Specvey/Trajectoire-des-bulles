@@ -26,6 +26,11 @@ public class Point
 		return this.z;
 	}
 	
+	public boolean compareTo(Point p){
+		if(x==p.getX() && y==p.getY() && z==p.getZ()) return true;
+		else return false;
+	}
+	
 	public String toString()
 	{
 		return x+" "+y+" "+z;
