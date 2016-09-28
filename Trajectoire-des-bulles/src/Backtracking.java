@@ -19,7 +19,7 @@ public class Backtracking
 	 * A partir d'un fichier, on crée l'arraylist de points.
 	 * Chaque point a des coordonnées x y z.
 	 */
-	public void creationGraphe(String nomFichier)
+	public void lectureFichier(String nomFichier)
 	{
 	    FileInputStream fis = null;
 	    InputStreamReader isr = null;
@@ -68,10 +68,16 @@ public class Backtracking
 	    }
 	}
 	
-	public convertStringEnDouble(String texte)
+	public double convertStringEnDouble(String texte)
 	{
 		String[] split = texte.split("e");
 		double a = Double.parseDouble(split[0]);
+		double b = Double.parseDouble(split[1].substring(1, split[1].length()-1));
+		if(split[1].startsWith("+"))
+		{
+			return Math.pow(a,-b);
+		}
+		return Math.pow(a,-b);
 	}
 	
 	public double calculAngle(Point p1, Point p2, Point p3)
