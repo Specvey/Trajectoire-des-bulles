@@ -11,7 +11,10 @@ import java.util.Comparator;
 public class Backtracking
 {
 	ArrayList<Point> lesPoints = new ArrayList<Point>();
+	double pourcentageDistance = 0.1;
+	double angle =  0.349066;
 	
+			
 	public Backtracking()
 	{
 		
