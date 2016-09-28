@@ -40,8 +40,14 @@ public class Point
 	
 	public boolean compareTo(Point p)
 	{
-		if(x==p.getX() && y==p.getY() && z==p.getZ()) return true;
-		else return false;
+		if(x==p.getX() && y==p.getY() && z==p.getZ())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public String toString()
