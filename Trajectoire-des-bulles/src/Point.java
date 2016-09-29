@@ -35,7 +35,6 @@ public class Point
 	public double getDistance()
 	{
 		return this.distance;
-		
 	}
 	
 	public boolean compareTo(Point p)
