@@ -106,7 +106,7 @@ public class Backtracking
 		return res;
 	}
 	
-	public Point voisin(Point pO) 
+	public ArrayList<Point> voisinsPlusProche(Point pO) 
 	{
 		  ArrayList<Point> voisinage = new ArrayList<Point>();
 		  
@@ -120,7 +120,7 @@ public class Backtracking
 		  
 		  tri(voisinage, pO);
 		  
-		  return voisinage.get(0);
+		  return voisinage;
 		  
 	}
 	
