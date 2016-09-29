@@ -3,7 +3,6 @@ public class Point
 	private double x;
 	private double y;
 	private double z;
-	private double distance;
 	
 	public Point(double x, double y, double z)
 	{
@@ -25,16 +24,6 @@ public class Point
 	public double getZ()
 	{
 		return this.z;
-	}
-	
-	public void setDistance(double d)
-	{
-		distance = d;
-	}
-	
-	public double getDistance()
-	{
-		return this.distance;
 	}
 	
 	public boolean compareTo(Point p)
