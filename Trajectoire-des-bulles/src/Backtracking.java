@@ -113,7 +113,6 @@ public class Backtracking
 		  {
 			  if(!pO.compareTo(pV))
 			  {
-				 
 				  voisinage.add(pV);
 			  }
 		  }
