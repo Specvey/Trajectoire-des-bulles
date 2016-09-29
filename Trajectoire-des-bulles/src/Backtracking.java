@@ -123,7 +123,7 @@ public class Backtracking
 	}
 	
 	public ArrayList<Point> tri(ArrayList<Point> al, Point pO)
-	  {
+	{
 	  
 	   Collections.sort(al, new Comparator<Point>(){
 	    public int compare(Point p1, Point p2)
