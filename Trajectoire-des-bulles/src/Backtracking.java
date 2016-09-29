@@ -5,10 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Backtracking
 {
 	ArrayList<Point> lesPoints = new ArrayList<Point>();
+	double pourcentageDistance = 0.1;
+	double angle =  0.349066;
 	
 	public Backtracking(String nomFichier)
 	{
@@ -103,7 +107,7 @@ public class Backtracking
 		return res;
 	}
 	
-	public ArrayList<Point> voisin(Point pO) 
+	public Point voisin(Point pO) 
 	{
 		 
 		  ArrayList<Point> voisinage = new ArrayList<Point>();
@@ -118,9 +122,28 @@ public class Backtracking
 			  }
 		  }
 		  
+		  return voisinage.get(0);
 		  
-		  
-		  return voisinage;
-		  
-		 }
+	}
+	
+	public ArrayList<Point> tri(ArrayList<Point> al, Point pO)
+	  {
+	  
+	   Collections.sort(al, new Comparator<Point>(){
+	    public int compare(Point p1, Point p2)
+	    {
+	     int comp = (int) (calculDistance(pO,p1) - calculDistance(pO,p2));
+	     
+	      return comp;
+	     }
+	   });
+	   
+	   return al;
+	  }
+	
+	public void deroulement()
+	{
+		
+		
+	}
 }
