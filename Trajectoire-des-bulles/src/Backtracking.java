@@ -113,10 +113,12 @@ public class Backtracking
 		  {
 			  if(!pO.compareTo(pV))
 			  {
-				  pV.setDistance(calculDistance(pO, pV));
+				 
 				  voisinage.add(pV);
 			  }
 		  }
+		  
+		  tri(voisinage, pO);
 		  
 		  return voisinage.get(0);
 		  
