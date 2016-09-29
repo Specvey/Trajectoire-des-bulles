@@ -14,10 +14,9 @@ public class Backtracking
 	double pourcentageDistance = 0.1;
 	double angle =  0.349066;
 	
-			
-	public Backtracking()
+	public Backtracking(String nomFichier)
 	{
-		
+		lectureFichier(nomFichier);
 	}
 	
 	/**
@@ -41,9 +40,9 @@ public class Backtracking
 	    	{
 	    		String[] split = ligneFichier.split("   ");
 	    		
-	    		x = convertStringEnDouble(split[0]);
-	    		y = convertStringEnDouble(split[1]);
-	    		z = convertStringEnDouble(split[2]);
+	    		x = convertStringEnDouble(split[1]);
+	    		y = convertStringEnDouble(split[2]);
+	    		z = convertStringEnDouble(split[3]);
 	    		
 	    		lesPoints.add(new Point(x, y, z));
 	    	}
@@ -76,15 +75,20 @@ public class Backtracking
 	public double convertStringEnDouble(String texte)
 	{
 		String[] split = texte.split("e");
+		
 		double a = Double.parseDouble(split[0]);
-		double b = Double.parseDouble(split[1].substring(1, split[1].length()-1));
-		if(split[1].startsWith("+"))
-		{
-			return Math.pow(a,-b);
-		}
-		return Math.pow(a,-b);
+		double puissance = Double.parseDouble(split[1].substring(0, split[1].length()));
+		return a*Math.pow(10,puissance);
 	}
 	
+	public void afficherLesPoints()
+	{
+		for(Point p:lesPoints)
+		{
+			System.out.println(p.toString());
+		}
+	}
+
 	public double calculAngle(Point p1, Point p2, Point p3)
 	{
 		double b = calculDistance(p1, p2);
@@ -99,15 +103,12 @@ public class Backtracking
 	public double calculDistance(Point a, Point b)
 	{
 		double res = Math.sqrt(Math.pow((b.getX() - a.getX()), 2) + Math.pow((b.getY() - a.getY()), 2) + Math.pow((b.getZ() - a.getZ()), 2));
-
 		return res;
 	}
 	
 	public Point voisin(Point pO) 
 	{
-		 
 		  ArrayList<Point> voisinage = new ArrayList<Point>();
-		  
 		  
 		  for(Point pV : lesPoints)
 		  {
@@ -125,7 +126,6 @@ public class Backtracking
 	
 	public ArrayList<Point> tri(ArrayList<Point> al, Point pO)
 	{
-	  
 	   Collections.sort(al, new Comparator<Point>(){
 	    public int compare(Point p1, Point p2)
 	    {
@@ -134,13 +134,11 @@ public class Backtracking
 	      return comp;
 	     }
 	   });
-	   
 	   return al;
-	  }
+	 }
 	
 	public void deroulement()
 	{
-		
 		
 	}
 }
