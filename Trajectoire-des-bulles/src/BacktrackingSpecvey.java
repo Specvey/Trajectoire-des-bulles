@@ -107,10 +107,141 @@ public class BacktrackingSpecvey
 	}
 	
 	
-	public void deroulement()
+	public ArrayList<Point[]> deroulement()
+    {
+        int i1 = 0, i2 = 0, i3 = 0, i4 = 0;
+        Point [] trajectoire;
+        ArrayList<Point> pointsRestants = new ArrayList<Point>();
+        ArrayList<Point[]> trajectoires = new ArrayList<Point[]>();
+        double distanceP12;
+        
+        // On recopie points dans pointsRestants
+        for(Point p:points)
+        {
+        	pointsRestants.add(p);
+        }
+        
+        for(Point p1:pointsRestants)
+        {
+        	pointsRestants.remove(p1);
+        	
+            for(Point p2:pointsRestants)
+            {
+            	distanceP12 = calculDistance(p1, p2);
+                pointsRestants.remove(p2);
+                
+                for(Point p3:pointsRestants)
+                {
+                	// On regarde si p3 est possible pour la distance et pour l'angle
+                    // Si p3 est possible, on continue
+                    // if( calculDistance(p2, p3)>distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian )
+                    if( calculDistance(p2, p3)>distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian || (Math.PI - calculAngle(p3,p2,p1)) < angleRadian )
+                    {
+                    	pointsRestants.remove(p3);
+                    	for(Point p4:pointsRestants)
+                    	{
+                    		// On regarde si p4 est possible pour la distance et pour l'angle
+                            // Si p4 est possible, on continue
+                            // if( calculDistance(p3, p4)>2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4)<2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian )
+                            if( calculDistance(p3, p4)>2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4)<2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian || (Math.PI - calculAngle(p4,p3,p2)) < 2*angleRadian )
+                            {
+                            	pointsRestants.remove(p4);
+                        
+                            	for(Point p5:pointsRestants)
+                            	{
+                            		// On regarde si p5 est possible pour la distance et pour l'angle
+                                    // Si p5 est possible, on a trouvé une nouvelle trajectoire que l'on ajoute
+                                    // if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
+                                    if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
+                                    {
+                                    	trajectoire= new Point[5];
+                                    	trajectoire[0]=p1;
+                                    	trajectoire[1]=p2;
+                                    	trajectoire[2]=p3;
+                                    	trajectoire[3]=p4;
+                                    	trajectoire[4]=p5;
+                                    	trajectoires.add(trajectoire);
+                                    } //if p5
+                            	} // for p5
+                            	pointsRestants.add(i4, p4);
+                            	i4++;
+                            } // if p4
+                    	} // for p4
+                    	i4=0;
+                    	pointsRestants.add(i3, p3);
+                    	i3++;
+                    } // if p3
+                } // for p3
+                i3=0;
+                pointsRestants.add(i2, p2);
+                i2++;
+            } // for p2
+            i2=0;
+            pointsRestants.add(i1, p1);
+            i1++;
+        } // for p1
+        return trajectoires;
+    } // déroulement
+	
+	//Si les deux trajectoires sont différentes on renvoie vrai.
+	public boolean compareTrajectoires(Point[] t1, Point[] t2)
 	{
-		ArrayList<Point> pointsRestants = new ArrayList<Point>();
-		
-		double b = Math.PI+3;
+		for(Point p1:t1)
+		{
+			for(Point p2:t2)
+		    {
+				if(p1.compareTo(p2))
+		        {
+					return false;
+		        }
+		    }
+		}
+		return true;
 	}
+	
+	
+	public ArrayList<Point[]> recopieArrayTabPoint(ArrayList<Point[]> trajectoires)
+	{
+		ArrayList<Point[]> trajectoiresTmp = new ArrayList<Point[]>();
+		Point[] trajectoire;
+		// On recopie trajectoires
+		for(Point[] tab:trajectoires)
+		{
+			trajectoire = new Point[5];
+		    for(int i=0; i<5;i++)
+		    {
+		    	trajectoire[0]=tab[0];
+		        trajectoire[1]=tab[1];
+		        trajectoire[2]=tab[2];
+		        trajectoire[3]=tab[3];
+		        trajectoire[4]=tab[4];
+		    }
+		    trajectoiresTmp.add(trajectoire);
+		}
+		return trajectoiresTmp;
+	}
+	
+	public ArrayList<Point[]> nettoyageDePrintemps(ArrayList<Point[]> trajectoires)
+	{
+		ArrayList<Point[]> trajectoiresTmp = recopieArrayTabPoint(trajectoires);
+		ArrayList<Point[]> meilleurSerie = new ArrayList<Point[]>();
+		int i=0;
+
+		// TODO
+
+		for(Point[] trajectoireA: trajectoiresTmp)
+		{
+			meilleurSerie.add(trajectoireA);
+			trajectoiresTmp.remove(trajectoireA);
+		    for(Point[] trajectoireB: trajectoiresTmp)
+		    {
+		    	
+		    }
+		    //trajectoiresTmp.add(trajectoire);
+		    i++;
+		}
+		return trajectoires;
+	}
+	
+	
 }
