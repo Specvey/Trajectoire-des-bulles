@@ -250,13 +250,11 @@ public class BacktrackingSpecvey
             	meilleureSerie = serieEnCours;
             }
             
-            
             trajectoires.add(trajectoires.get(0));
             trajectoires.remove(0);
-   
         }
             
-        return trajectoires;
+        return meilleureSerie;
     }
 	
 	
