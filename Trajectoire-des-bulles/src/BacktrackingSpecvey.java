@@ -222,26 +222,42 @@ public class BacktrackingSpecvey
 	}
 	
 	public ArrayList<Point[]> nettoyageDePrintemps(ArrayList<Point[]> trajectoires)
-	{
-		ArrayList<Point[]> trajectoiresTmp = recopieArrayTabPoint(trajectoires);
-		ArrayList<Point[]> meilleurSerie = new ArrayList<Point[]>();
-		int i=0;
+    {
+		ArrayList<Point[]> trajectoiresTmp = new ArrayList<Point[]>();
+        ArrayList<Point[]> meilleureSerie = new ArrayList<Point[]>();
+        ArrayList<Point[]> serieEnCours = new ArrayList<Point[]>();
 
-		// TODO
+        for(int i = 0; i < trajectoires.size(); i++)
+        {
+        	trajectoiresTmp = recopieArrayTabPoint(trajectoires);
 
-		for(Point[] trajectoireA: trajectoiresTmp)
-		{
-			meilleurSerie.add(trajectoireA);
-			trajectoiresTmp.remove(trajectoireA);
-		    for(Point[] trajectoireB: trajectoiresTmp)
-		    {
-		    	
-		    }
-		    //trajectoiresTmp.add(trajectoire);
-		    i++;
-		}
-		return trajectoires;
-	}
+        	for(Point[] trajectoireA: trajectoiresTmp)
+            {
+        		trajectoiresTmp.remove(trajectoireA);
+                serieEnCours.add(trajectoireA);
+                    
+                for(Point[] trajectoireB: trajectoiresTmp)
+                {
+                	if(!compareTrajectoires(trajectoireA, trajectoireB))
+                    {
+                        trajectoiresTmp.remove(trajectoireB);
+                    }
+                }
+            }
+            
+        	if(serieEnCours.size() > meilleureSerie.size())
+            {
+            	meilleureSerie = serieEnCours;
+            }
+            
+            
+            trajectoires.add(trajectoires.get(0));
+            trajectoires.remove(0);
+   
+        }
+            
+        return trajectoires;
+    }
 	
 	
 }
