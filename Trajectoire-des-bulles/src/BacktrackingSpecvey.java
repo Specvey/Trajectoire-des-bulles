@@ -135,7 +135,8 @@ public class BacktrackingSpecvey
                 	// On regarde si p3 est possible pour la distance et pour l'angle
                     // Si p3 est possible, on continue
                     // if( calculDistance(p2, p3)>distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian )
-                    if( calculDistance(p2, p3) > distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian || (Math.PI - calculAngle(p3,p2,p1)) < angleRadian )
+
+                    if(calculDistance(p2, p3) > distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian || (Math.PI - calculAngle(p3,p2,p1)) < angleRadian)
                     {
                     	pointsRestants.remove(p3);
                     	for(Point p4:pointsRestants)
@@ -143,7 +144,8 @@ public class BacktrackingSpecvey
                     		// On regarde si p4 est possible pour la distance et pour l'angle
                             // Si p4 est possible, on continue
                             // if( calculDistance(p3, p4)>2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4)<2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian )
-                            if( calculDistance(p3, p4) > 2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4) < 2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian || (Math.PI - calculAngle(p4,p3,p2)) < 2*angleRadian )
+
+                            if(calculDistance(p3, p4) > 2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4) < 2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian || (Math.PI - calculAngle(p4,p3,p2)) < 2*angleRadian)
                             {
                             	pointsRestants.remove(p4);
                         
@@ -152,7 +154,8 @@ public class BacktrackingSpecvey
                             		// On regarde si p5 est possible pour la distance et pour l'angle
                                     // Si p5 est possible, on a trouvé une nouvelle trajectoire que l'on ajoute
                                     // if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
-                                    if( calculDistance(p4, p5) > distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
+
+                                    if(calculDistance(p4, p5) > distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian)
                                     {
                                     	trajectoire = new Point[5];
                                     	trajectoire[0]= p1;
@@ -222,26 +225,41 @@ public class BacktrackingSpecvey
 	}
 	
 	public ArrayList<Point[]> nettoyageDePrintemps(ArrayList<Point[]> trajectoires)
-	{
-		ArrayList<Point[]> trajectoiresTmp = recopieArrayTabPoint(trajectoires);
-		ArrayList<Point[]> meilleurSerie = new ArrayList<Point[]>();
-		int i=0;
+    {
+		ArrayList<Point[]> trajectoiresTmp = new ArrayList<Point[]>();
+        ArrayList<Point[]> meilleureSerie = new ArrayList<Point[]>();
+        ArrayList<Point[]> serieEnCours = new ArrayList<Point[]>();
 
-		// TODO
+        for(int i = 0; i < trajectoires.size(); i++)
+        {
+        	trajectoiresTmp = recopieArrayTabPoint(trajectoires);
 
-		for(Point[] trajectoireA : trajectoiresTmp)
-		{
-			meilleurSerie.add(trajectoireA);
-			trajectoiresTmp.remove(trajectoireA);
-		    for(Point[] trajectoireB: trajectoiresTmp)
-		    {
-		    	
-		    }
-		    //trajectoiresTmp.add(trajectoire);
-		    i++;
-		}
-		return trajectoires;
-	}
-	
+        	for(Point[] trajectoireA: trajectoiresTmp)
+            {
+        		trajectoiresTmp.remove(trajectoireA);
+                serieEnCours.add(trajectoireA);
+                    
+                for(Point[] trajectoireB: trajectoiresTmp)
+                {
+                	if(!compareTrajectoires(trajectoireA, trajectoireB))
+                    {
+                        trajectoiresTmp.remove(trajectoireB);
+                    }
+                }
+            }
+            
+        	if(serieEnCours.size() > meilleureSerie.size())
+            {
+            	meilleureSerie = serieEnCours;
+            }
+            
+            
+            trajectoires.add(trajectoires.get(0));
+            trajectoires.remove(0);
+   
+        }
+            
+        return trajectoires;
+    }
 	
 }
