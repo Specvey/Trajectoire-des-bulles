@@ -143,8 +143,7 @@ public class BacktrackingSpecvey
                     // Si p3 est possible, on continue
                      if( calculDistance(p2, p3)>distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian )
                     //if(calculDistance(p2, p3) > distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian || (Math.PI - calculAngle(p3,p2,p1)) < angleRadian)
-                    {
-                            
+                    {                  
                             pointsRestants.remove(i3);
                             for(int i4 = 0;i4<pointsRestants.size();i4++) // Point p4:pointsRestants
                             {
@@ -154,11 +153,8 @@ public class BacktrackingSpecvey
                              if( calculDistance(p3, p4)>2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4)<2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian )
                             //if(calculDistance(p3, p4) > 2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4) < 2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian || (Math.PI - calculAngle(p4,p3,p2)) < 2*angleRadian)
                             {
-
-                                   
-
                                     pointsRestants.remove(i4);
-                        
+                                    
                                     for(int i5 = 0;i5<pointsRestants.size();i5++) // Point p5:pointsRestants
                                     {
                                         p5 = new Point(pointsRestants.get(i5));
@@ -219,7 +215,7 @@ public class BacktrackingSpecvey
 		for(Point[] tab:trajectoires)
 		{
 			trajectoire = new Point[5];
-		    for(int i=0; i<5;i++)
+		    for(int i = 0; i < 5;i++)
 		    {
 		    	trajectoire[0]=tab[0];
 		        trajectoire[1]=tab[1];
