@@ -135,7 +135,7 @@ public class BacktrackingSpecvey
                 	// On regarde si p3 est possible pour la distance et pour l'angle
                     // Si p3 est possible, on continue
                     // if( calculDistance(p2, p3)>distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian )
-                    if( calculDistance(p2, p3)>distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian || (Math.PI - calculAngle(p3,p2,p1)) < angleRadian )
+                    if( calculDistance(p2, p3) > distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian || (Math.PI - calculAngle(p3,p2,p1)) < angleRadian )
                     {
                     	pointsRestants.remove(p3);
                     	for(Point p4:pointsRestants)
@@ -143,7 +143,7 @@ public class BacktrackingSpecvey
                     		// On regarde si p4 est possible pour la distance et pour l'angle
                             // Si p4 est possible, on continue
                             // if( calculDistance(p3, p4)>2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4)<2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian )
-                            if( calculDistance(p3, p4)>2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4)<2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian || (Math.PI - calculAngle(p4,p3,p2)) < 2*angleRadian )
+                            if( calculDistance(p3, p4) > 2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4) < 2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian || (Math.PI - calculAngle(p4,p3,p2)) < 2*angleRadian )
                             {
                             	pointsRestants.remove(p4);
                         
@@ -152,7 +152,7 @@ public class BacktrackingSpecvey
                             		// On regarde si p5 est possible pour la distance et pour l'angle
                                     // Si p5 est possible, on a trouvé une nouvelle trajectoire que l'on ajoute
                                     // if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
-                                    if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
+                                    if( calculDistance(p4, p5) > distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
                                     {
                                     	trajectoire = new Point[5];
                                     	trajectoire[0]= p1;
@@ -208,7 +208,7 @@ public class BacktrackingSpecvey
 		for(Point[] tab:trajectoires)
 		{
 			trajectoire = new Point[5];
-		    for(int i=0; i<5;i++)
+		    for(int i = 0; i < 5;i++)
 		    {
 		    	trajectoire[0]=tab[0];
 		        trajectoire[1]=tab[1];
@@ -229,7 +229,7 @@ public class BacktrackingSpecvey
 
 		// TODO
 
-		for(Point[] trajectoireA: trajectoiresTmp)
+		for(Point[] trajectoireA : trajectoiresTmp)
 		{
 			meilleurSerie.add(trajectoireA);
 			trajectoiresTmp.remove(trajectoireA);
