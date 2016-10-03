@@ -154,12 +154,12 @@ public class BacktrackingSpecvey
                                     // if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
                                     if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
                                     {
-                                    	trajectoire= new Point[5];
-                                    	trajectoire[0]=p1;
-                                    	trajectoire[1]=p2;
-                                    	trajectoire[2]=p3;
-                                    	trajectoire[3]=p4;
-                                    	trajectoire[4]=p5;
+                                    	trajectoire = new Point[5];
+                                    	trajectoire[0]= p1;
+                                    	trajectoire[1]= p2;
+                                    	trajectoire[2]= p3;
+                                    	trajectoire[3]= p4;
+                                    	trajectoire[4]= p5;
                                     	trajectoires.add(trajectoire);
                                     } //if p5
                             	} // for p5
