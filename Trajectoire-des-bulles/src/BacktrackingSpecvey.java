@@ -115,6 +115,7 @@ public class BacktrackingSpecvey
         
         int k =0;
         
+        // Déclaration des points
         Point p1, p2, p3, p4, p5;
         
         // On recopie points dans pointsRestants
