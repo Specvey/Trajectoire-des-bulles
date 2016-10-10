@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+
 public class Point 
 {
 	private double x;
 	private double y;
 	private double z;
+	
+	private ArrayList<Point> voisins;
 	
 	public Point(double x, double y, double z)
 	{
@@ -43,6 +47,16 @@ public class Point
 		{
 			return false;
 		}
+	}
+	
+	public void setVoisins(ArrayList<Point> v)
+	{
+		voisins = new ArrayList<Point>(v);
+	}
+	
+	public ArrayList<Point> getVoisins()
+	{
+		return voisins;
 	}
 	
 	public String toString()
