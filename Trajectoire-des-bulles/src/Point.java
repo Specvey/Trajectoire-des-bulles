@@ -7,6 +7,7 @@ public class Point
 	private double z;
 	
 	private ArrayList<Point> voisins;
+	private ArrayList<Point> meilleursVoisins;
 	
 	public Point(double x, double y, double z)
 	{
@@ -54,9 +55,19 @@ public class Point
 		voisins = new ArrayList<Point>(v);
 	}
 	
+	public void setMeilleursVoisins(ArrayList<Point> v)
+	{
+		meilleursVoisins = new ArrayList<Point>(v);
+	}
+	
 	public ArrayList<Point> getVoisins()
 	{
 		return voisins;
+	}
+	
+	public ArrayList<Point> getMeilleursVoisins()
+	{
+		return meilleursVoisins;
 	}
 	
 	public String toString()
