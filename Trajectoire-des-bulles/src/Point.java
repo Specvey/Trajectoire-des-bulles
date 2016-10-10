@@ -51,7 +51,7 @@ public class Point
 	
 	public void setVoisins(ArrayList<Point> v)
 	{
-		voisins = new ArrayList(v);
+		voisins = new ArrayList<Point>(v);
 	}
 	
 	public ArrayList<Point> getVoisins()

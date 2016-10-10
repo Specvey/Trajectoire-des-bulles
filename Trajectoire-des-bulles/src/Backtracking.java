@@ -124,6 +124,31 @@ public class Backtracking
 		  
 	}
 	
+	public ArrayList<Point> voisinsPlusProche(Point pO, int nbreDeVoisinsAGarder) 
+	{
+		  ArrayList<Point> voisinage = new ArrayList<Point>();
+		  ArrayList<Point> meilleursVoisins = new ArrayList<Point>();
+		  
+		  for(Point pV : lesPoints)
+		  {
+			  if(!pO.compareTo(pV))
+			  {
+				  voisinage.add(pV);
+			  }
+		  }
+		  
+		  tri(voisinage, pO);
+		  
+		  for(int i = 0; i < nbreDeVoisinsAGarder; i++)
+		  {
+			  meilleursVoisins.add(voisinage.get(i));
+		  }
+		  
+		  return meilleursVoisins;
+		  
+	}
+	
+	
 	public ArrayList<Point> tri(ArrayList<Point> al, Point pO)
 	{
 	   Collections.sort(al, new Comparator<Point>(){
