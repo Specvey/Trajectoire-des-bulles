@@ -344,6 +344,7 @@ public class BacktrakingRecurcif
 	        }
 	    }
 	    return meilleurTrajectoires;
+	    // comit
 	}
 
 }
