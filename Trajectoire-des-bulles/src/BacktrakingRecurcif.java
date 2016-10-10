@@ -13,7 +13,7 @@ public class BacktrakingRecurcif
 	private double pourcentageDistance = 0.1;
 	private double angleRadian =  0.4;
 	
-	public BacktrackingSpecvey(String nomFichier)
+	public BacktrakingRecurcif(String nomFichier)
 	{
 		lectureFichier(nomFichier);
 	}
@@ -283,7 +283,7 @@ public class BacktrakingRecurcif
 	
 	public ArrayList<Point[]> suprimeMemeTrajectoires(Point[] trajectoire, ArrayList<Point[]> trajectoires)
 	{
-	    ArrayList<Point[]> trajectoiresRestantes = recopieArrayTabPoint(trajectoires);
+	    ArrayList<Point[]> trajectoiresRestantes = new ArrayList<Point[]>(trajectoires);
 	    for(Point[] t : trajectoires)
 	    {
 	         if(!compareTrajectoires(trajectoire, t))
@@ -296,7 +296,7 @@ public class BacktrakingRecurcif
 
 	public void seriesTi(ArrayList<ArrayList<Point[]>> listeSeries, ArrayList<Point[]> trajectoiresPrises, ArrayList<Point[]> trajectoiresRestantes)
 	{
-	    if(trajectoiresRestantes.size() != 0)
+	    if(trajectoiresRestantes != null || trajectoiresRestantes.size() != 0)
 	    {
 	        for(Point[] t : trajectoiresRestantes)
 	        {
