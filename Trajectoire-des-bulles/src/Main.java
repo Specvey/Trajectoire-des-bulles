@@ -14,6 +14,7 @@ public class Main
 		ArrayList<Point[]> resultat = bs.nettoyageDePrintemps(trajectoires);
 		
 		System.out.println(resultat.size());
+		
 	}
 
 }
