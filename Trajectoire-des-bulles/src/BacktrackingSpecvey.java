@@ -112,9 +112,7 @@ public class BacktrackingSpecvey
         ArrayList<Point[]> trajectoires = new ArrayList<Point[]>();
         double distanceP12;
         //double distanceMax = distanceMoyenne();
-        
-        int k =0;
-        
+
         // Déclaration des points
         Point p1, p2, p3, p4, p5;
         
@@ -164,7 +162,6 @@ public class BacktrackingSpecvey
                                      if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
                                     //if(calculDistance(p4, p5) > distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian)
                                     {
-                                    	k++;
                                     	//System.out.println(k);
                                             trajectoire = new Point[5];
                                             trajectoire[0]= p1;

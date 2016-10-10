@@ -211,6 +211,7 @@ public class Backtracking
                     distanceP12 = calculDistance(p1, p2);
                 for(Point p3:p2.getVoisins())
                 {
+                	System.out.println("p3");
                     // On vérifie que p3 n'est pas dans trajectoire
                     if(!Arrays.asList(trajectoire).contains(p3))
                     {
@@ -224,6 +225,7 @@ public class Backtracking
                         {
                             for(Point p4:p3.getVoisins())
                             {
+                            	System.out.println("p4");
                                 // On vérifie que p4 n'est pas dans trajectoire
 
                         if(!Arrays.asList(trajectoire).contains(p4))
@@ -246,7 +248,6 @@ public class Backtracking
                         if(!Arrays.asList(trajectoire).contains(p5))
 
     {
-
     trajectoire[4]= p5;
 
                                             // On regarde si p5 est possible pour la distance et pour l'angle
