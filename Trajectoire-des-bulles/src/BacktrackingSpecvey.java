@@ -10,7 +10,7 @@ public class BacktrackingSpecvey
 {
 	private ArrayList<Point> points = new ArrayList<Point>();
 	private double pourcentageDistance = 0.1;
-	private double angleRadian =  0.69813170079773;
+	private double angleRadian =  0.4;
 	
 	public BacktrackingSpecvey(String nomFichier)
 	{
