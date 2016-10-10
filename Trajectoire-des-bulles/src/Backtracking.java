@@ -106,7 +106,7 @@ public class Backtracking
 		return res;
 	}
 	
-	public ArrayList<Point> voisinsPlusProche(Point pO) 
+	public void voisins(Point pO) 
 	{
 		  ArrayList<Point> voisinage = new ArrayList<Point>();
 		  
@@ -120,11 +120,11 @@ public class Backtracking
 		  
 		  tri(voisinage, pO);
 		  
-		  return voisinage;
+		  pO.setVoisins(voisinage);
 		  
 	}
 	
-	public ArrayList<Point> voisinsPlusProche(Point pO, int nbreDeVoisinsAGarder) 
+	public void meilleursVoisins(Point pO, int nbreDeVoisinsAGarder) 
 	{
 		  
 		ArrayList<Point> voisinage = new ArrayList<Point>();
@@ -145,7 +145,7 @@ public class Backtracking
 			meilleursVoisins.add(voisinage.get(i));
 		}
 		  
-		return meilleursVoisins;
+		pO.setVoisins(meilleursVoisins);
 		  
 	}
 	
