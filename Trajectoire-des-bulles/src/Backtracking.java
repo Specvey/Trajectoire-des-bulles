@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -12,7 +13,7 @@ public class Backtracking
 {
 	private ArrayList<Point> points = new ArrayList<Point>();
 	private double pourcentageDistance = 0.1;
-	private double angle =  0.349066;
+	private double angleRadian =  0.349066;
 	private double nbreDeVoisinsAGarder = 0.1;
 	
 	public Backtracking(String nomFichier)
@@ -166,16 +167,120 @@ public class Backtracking
 	   Collections.sort(al, new Comparator<Point>(){
 	    public int compare(Point p1, Point p2)
 	    {
-	     int comp = (int) (calculDistance(pO,p1) - calculDistance(pO,p2));
+	      //int comp = (int) (calculDistance(pO,p1) - calculDistance(pO,p2));
 	     
-	      return comp;
+	     double comp = Double.compare(calculDistance(pO, p1), calculDistance(pO, p2));
+	    	
+	     if(comp < 0)
+	     {
+	    	 return -1;
+	     }
+	     else if(comp > 0)
+	     {
+	    	 return 1;
+	     }
+	     else
+	     {
+	    	 return 0;
+	     }
+	     
 	     }
 	   });
 	   return al;
 	 }
 	
-	public void deroulement()
-	{
-		
-	}
+	 public ArrayList<Point[]> deroulement()
+
+     {
+
+        Point [] trajectoire;
+        ArrayList<Point[]> trajectoires = new ArrayList<Point[]>();
+        double distanceP12;
+        
+        int k =0;
+        
+        // Déclaration des points
+
+        for(Point p1:points)
+        {
+            trajectoire = new Point[5];
+            trajectoire[0]= p1;
+            for(Point p2:p1.getMeilleursVoisins())
+            {
+                trajectoire[1]= p2;
+                    distanceP12 = calculDistance(p1, p2);
+                for(Point p3:p2.getVoisins())
+                {
+                    // On vérifie que p3 n'est pas dans trajectoire
+                    if(!Arrays.asList(trajectoire).contains(p3))
+                    {
+                        trajectoire[2]= p3;
+                        // On regarde si p3 est possible pour la distance et pour l'angle
+                    // Si p3 est possible, on continue
+                     //if( calculDistance(p2, p3)>distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p1,p2,p3)) < angleRadian )
+                    if(calculDistance(p2, p3) > distanceP12*(1-pourcentageDistance) && calculDistance(p2, p3) < distanceP12*(1+pourcentageDistance))
+                    {
+                        if((Math.PI - calculAngle(p1,p2,p3)) < angleRadian || (Math.PI - calculAngle(p3,p2,p1)) < angleRadian)
+                        {
+                            for(Point p4:p3.getVoisins())
+                            {
+                                // On vérifie que p4 n'est pas dans trajectoire
+
+                        if(!Arrays.asList(trajectoire).contains(p4))
+
+    {
+
+    trajectoire[3]= p4;
+
+                                    // On regarde si p4 est possible pour la distance et pour l'angle
+                            // Si p4 est possible, on continue
+                             //if( calculDistance(p3, p4)>2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4)<2*distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian )
+                            if(calculDistance(p3, p4) > 2*distanceP12*(1-pourcentageDistance) && calculDistance(p3, p4) < 2*distanceP12*(1+pourcentageDistance))
+                            {
+                                if((Math.PI - calculAngle(p2,p3,p4)) < 2*angleRadian || (Math.PI - calculAngle(p4,p3,p2)) < 2*angleRadian)
+                                {
+                                    for(Point p5:p4.getVoisins())
+                                    {
+                                         // On vérifie que p4 n'est pas dans trajectoire
+
+                        if(!Arrays.asList(trajectoire).contains(p5))
+
+    {
+
+    trajectoire[4]= p5;
+
+                                            // On regarde si p5 est possible pour la distance et pour l'angle
+                                    // Si p5 est possible, on a trouvé une nouvelle trajectoire que l'on ajoute
+                                     //if( calculDistance(p4, p5)>distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5)<distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian )
+                                    if(calculDistance(p4, p5) > distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5) < distanceP12*(1+pourcentageDistance))
+                                    {
+                                        if((Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian)
+                                        {
+                                            k++;
+                                            System.out.println(k);
+                                            trajectoires.add(trajectoire);
+                                        }
+                                    } //if p5
+                                    break;
+                                    } //if p5
+                                    } // for p5
+                            } // if p4
+                            break;
+                            } // if p4
+                            }
+                            } // for p4
+                    }// if p3
+                    break;
+                    }// if p3
+                    }
+                } // for p3
+                    //}//if distance max
+            } // for p2
+        } // for p1
+        
+        //System.out.print("fini");
+        return trajectoires;
+    } // déroulement
+	 
+	 
 }

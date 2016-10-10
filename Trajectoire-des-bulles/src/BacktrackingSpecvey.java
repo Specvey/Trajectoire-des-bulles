@@ -10,7 +10,7 @@ public class BacktrackingSpecvey
 {
 	private ArrayList<Point> points = new ArrayList<Point>();
 	private double pourcentageDistance = 0.1;
-	private double angleRadian =  0.4;
+	private double angleRadian =  0.349066;
 	
 	public BacktrackingSpecvey(String nomFichier)
 	{
@@ -165,7 +165,7 @@ public class BacktrackingSpecvey
                                     //if(calculDistance(p4, p5) > distanceP12*(1-pourcentageDistance) && calculDistance(p4, p5) < distanceP12*(1+pourcentageDistance) && (Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian)
                                     {
                                     	k++;
-                                    	System.out.println(k);
+                                    	//System.out.println(k);
                                             trajectoire = new Point[5];
                                             trajectoire[0]= p1;
                                             trajectoire[1]= p2;
@@ -187,7 +187,7 @@ public class BacktrackingSpecvey
             pointsRestants.add(i1, p1);
         } // for p1
         
-        System.out.print("fini");
+        //System.out.print("fini");
         return trajectoires;
     } // déroulement
 	
@@ -272,7 +272,7 @@ public class BacktrackingSpecvey
         for(int i = 0; i < trajectoires.size(); i++)
         {
         	serieEnCours = new ArrayList<Point[]>();
-        	System.out.println(meilleureSerie.size());
+        	//System.out.println(meilleureSerie.size());
             trajectoiresTmp = recopieArrayTabPoint(trajectoires);
 
                 for(int iA=0;iA<trajectoiresTmp.size();iA++) // Point[] trajectoireA: trajectoiresTmp
