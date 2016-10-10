@@ -107,6 +107,7 @@ public class BacktrackingSpecvey
 	
 	public ArrayList<Point[]> deroulement()
     {
+		long time = System.currentTimeMillis();
         Point [] trajectoire;
         ArrayList<Point> pointsRestants = new ArrayList<Point>();
         ArrayList<Point[]> trajectoires = new ArrayList<Point[]>();
@@ -185,6 +186,9 @@ public class BacktrackingSpecvey
         } // for p1
         
         //System.out.print("fini");
+        
+        System.out.println("Temps bs : "+(System.currentTimeMillis()-time));
+        
         return trajectoires;
     } // déroulement
 	

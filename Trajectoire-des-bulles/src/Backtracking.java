@@ -133,7 +133,6 @@ public class Backtracking
 		  tri(voisinage, pO);
 		  
 		  pO.setVoisins(voisinage);
-		  
 	}
 	
 	public void meilleursVoisins(Point pO) 
@@ -151,8 +150,9 @@ public class Backtracking
 		}
 		  
 		tri(voisinage, pO);
-		  
-		for(int i = 0; i < (int)nbreDeVoisinsAGarder*points.size(); i++)
+		
+		
+		for(int i = 0; i < (int)(nbreDeVoisinsAGarder*points.size()); i++)
 		{
 			meilleursVoisins.add(voisinage.get(i));
 		}
@@ -192,7 +192,7 @@ public class Backtracking
 	 public ArrayList<Point[]> deroulement()
 
      {
-
+		 long time = System.currentTimeMillis();
         Point [] trajectoire;
         ArrayList<Point[]> trajectoires = new ArrayList<Point[]>();
         double distanceP12;
@@ -211,7 +211,6 @@ public class Backtracking
                     distanceP12 = calculDistance(p1, p2);
                 for(Point p3:p2.getVoisins())
                 {
-                	System.out.println("p3");
                     // On vérifie que p3 n'est pas dans trajectoire
                     if(!Arrays.asList(trajectoire).contains(p3))
                     {
@@ -243,6 +242,7 @@ public class Backtracking
                                 {
                                     for(Point p5:p4.getVoisins())
                                     {
+                                    	System.out.println("p5");
                                          // On vérifie que p4 n'est pas dans trajectoire
 
                         if(!Arrays.asList(trajectoire).contains(p5))
@@ -258,26 +258,43 @@ public class Backtracking
                                         if((Math.PI - calculAngle(p3,p4,p5)) < angleRadian || (Math.PI - calculAngle(p3,p4,p5)) < angleRadian)
                                         {
                                             k++;
-                                            System.out.println(k);
+                                            //System.out.println(k);
                                             trajectoires.add(trajectoire);
                                         }
                                     } //if p5
-                                    break;
+                                    else
+                                    {
+                                    	break;
+                                    }
                                     } //if p5
+                        
+                        			//
                                     } // for p5
                             } // if p4
-                            break;
+                            
                             } // if p4
+                            else
+                            {
+                            	break;
+                            }
+                           // 
                             }
                             } // for p4
                     }// if p3
-                    break;
+                    
                     }// if p3
+                    else
+                    {
+                    	break;
+                    }
+                    //break;
                     }
                 } // for p3
                     //}//if distance max
             } // for p2
         } // for p1
+        
+        System.out.println("Temps bt : "+(System.currentTimeMillis()-time));
         
         //System.out.print("fini");
         return trajectoires;
