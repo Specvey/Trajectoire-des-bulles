@@ -7,7 +7,7 @@ public class Main
 		//Backtracking bt = new Backtracking("data/norma_N5_tau4_dt2_delai820_000000.txt");
 		// bt.afficherLesPoints();
 		
-		BacktrackingSpecvey bs = new BacktrackingSpecvey("data/norma_N5_tau4_dt2_delai820_000000.txt");
+		BacktrackingRecurcif bs = new BacktrackingRecurcif("data/norma_N5_tau4_dt2_delai820_000000.txt");
 		
 		ArrayList<Point[]> trajectoires = bs.deroulement();
 		
