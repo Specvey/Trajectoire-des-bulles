@@ -10,13 +10,15 @@ import java.util.Comparator;
 
 public class Backtracking
 {
-	ArrayList<Point> lesPoints = new ArrayList<Point>();
-	double pourcentageDistance = 0.1;
-	double angle =  0.349066;
+	private ArrayList<Point> points = new ArrayList<Point>();
+	private double pourcentageDistance = 0.1;
+	private double angle =  0.349066;
+	private double nbreDeVoisinsAGarder = 0.1;
 	
 	public Backtracking(String nomFichier)
 	{
 		lectureFichier(nomFichier);
+		attribuerVoisins();
 	}
 	
 	/**
@@ -44,7 +46,7 @@ public class Backtracking
 	    		y = convertStringEnDouble(split[2]);
 	    		z = convertStringEnDouble(split[3]);
 	    		
-	    		lesPoints.add(new Point(x, y, z));
+	    		points.add(new Point(x, y, z));
 	    	}
 	    	br.close();
 	    }
@@ -72,6 +74,15 @@ public class Backtracking
 	    }
 	}
 	
+	public void attribuerVoisins()
+	{
+		for(Point p: points)
+		{
+			voisins(p);
+			meilleursVoisins(p);
+		}
+	}
+	
 	public double convertStringEnDouble(String texte)
 	{
 		String[] split = texte.split("e");
@@ -83,7 +94,7 @@ public class Backtracking
 	
 	public void afficherLesPoints()
 	{
-		for(Point p:lesPoints)
+		for(Point p:points)
 		{
 			System.out.println(p.toString());
 		}
@@ -106,11 +117,11 @@ public class Backtracking
 		return res;
 	}
 	
-	public ArrayList<Point> voisinsPlusProche(Point pO) 
+	public void voisins(Point pO) 
 	{
 		  ArrayList<Point> voisinage = new ArrayList<Point>();
 		  
-		  for(Point pV : lesPoints)
+		  for(Point pV : points)
 		  {
 			  if(!pO.compareTo(pV))
 			  {
@@ -120,17 +131,17 @@ public class Backtracking
 		  
 		  tri(voisinage, pO);
 		  
-		  return voisinage;
+		  pO.setVoisins(voisinage);
 		  
 	}
 	
-	public ArrayList<Point> voisinsPlusProche(Point pO, int nbreDeVoisinsAGarder) 
+	public void meilleursVoisins(Point pO) 
 	{
 		  
 		ArrayList<Point> voisinage = new ArrayList<Point>();
 		ArrayList<Point> meilleursVoisins = new ArrayList<Point>();
 		  
-		for(Point pV : lesPoints)
+		for(Point pV : points)
 		{
 			if(!pO.compareTo(pV))
 			{
@@ -140,12 +151,12 @@ public class Backtracking
 		  
 		tri(voisinage, pO);
 		  
-		for(int i = 0; i < nbreDeVoisinsAGarder; i++)
+		for(int i = 0; i < (int)nbreDeVoisinsAGarder*points.size(); i++)
 		{
 			meilleursVoisins.add(voisinage.get(i));
 		}
 		  
-		return meilleursVoisins;
+		pO.setMeilleursVoisins(meilleursVoisins);
 		  
 	}
 	
